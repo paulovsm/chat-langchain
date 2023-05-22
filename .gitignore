@@ -138,4 +138,3 @@ dmypy.json
 vectorstore.pkl
 langchain.readthedocs.io/
 source_documents/
-db/

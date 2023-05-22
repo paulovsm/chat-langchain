@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Importar a biblioteca playwright, o módulo os e o módulo time
 from playwright.sync_api import sync_playwright
 import os

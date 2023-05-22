@@ -17,3 +17,4 @@ playwright
 lxml
 chromadb
 tqdm
+wsproto

@@ -1,20 +1,18 @@
 {
+    "installCommand": "pip install -r requirements.txt",
     "builds": [
-      { "src": "main.py", "use": "@vercel/python" }
+        {
+            "src": "main.py",
+            "use": "@vercel/python"
+        }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "/main.py" }
+        {
+            "src": "/(.*)",
+            "dest": "/main.py"
+        }
     ],
     "env": {
-      "UVICORN_CMD": "uvicorn main:app --host 0.0.0.0 --port $PORT"
-    },
-    "build": {
-      "env": {
-        "PIP_CACHE_DIR": "./cache"
-      },
-      "commands": [
-        "pip install -r requirements.txt"
-      ]
+        "UVICORN_CMD": "uvicorn main:app --host 0.0.0.0 --port $PORT"
     }
-  }
-  
+}

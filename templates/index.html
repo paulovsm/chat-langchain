@@ -51,7 +51,8 @@
         }
     </style>
     <script>
-        var endpoint = "ws://localhost:9000/chat";
+        //var endpoint = "ws://localhost:9000/chat";
+        var endpoint = "wss://paulovsm-ominous-giggle-q77q5gv4xg73wrw-9000.preview.app.github.dev/chat";
         var ws = new WebSocket(endpoint);
         // Receive message from server word by word. Display the words as they are received.
         ws.onmessage = function (event) {
@@ -126,8 +127,8 @@
 <body class="bg-black">
     <div class="chat-body card">
         <div class="card-body p-5">
-            <h4 class="card-title text-center text-xl font-medium"> Chat Your Data </h4>
-            <p class="card-text text-center text-sm" id="header"> Ask a question </p>
+            <h4 class="card-title text-center text-xl font-medium"> Chat with Storyverse </h4>
+            <p class="card-text text-center text-sm" id="header"> Ask me a question </p>
             <hr class="border-gray-500 mb-5" style="margin-top: 20px;">
             <div id="messages" class="overflow-auto" style="max-height: 500px;">
             </div>

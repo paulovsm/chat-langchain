@@ -1,4 +1,5 @@
 """Main entrypoint for the app."""
+import os
 import logging
 import pickle
 from pathlib import Path
@@ -7,24 +8,30 @@ from typing import Optional
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.templating import Jinja2Templates
 from langchain.vectorstores import VectorStore
+from langchain.embeddings import OpenAIEmbeddings
 
 from callback import QuestionGenCallbackHandler, StreamingLLMCallbackHandler
 from query_data import get_chain
 from schemas import ChatResponse
 
+from langchain.vectorstores import Chroma
+from constants import CHROMA_SETTINGS
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 vectorstore: Optional[VectorStore] = None
+
+# Load environment variables
+persist_directory = os.environ.get('PERSIST_DIRECTORY')
 
 
 @app.on_event("startup")
 async def startup_event():
     logging.info("loading vectorstore")
-    if not Path("vectorstore.pkl").exists():
-        raise ValueError("vectorstore.pkl does not exist, please run ingest.py first")
-    with open("vectorstore.pkl", "rb") as f:
-        global vectorstore
-        vectorstore = pickle.load(f)
+    global vectorstore
+    embeddings = OpenAIEmbeddings()
+    vectorstore = Chroma(persist_directory=persist_directory, embedding_function=embeddings, client_settings=CHROMA_SETTINGS)
+    #vectorstore = pickle.load(f)
 
 
 @app.get("/")

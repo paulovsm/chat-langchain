@@ -5,9 +5,15 @@ isort
 websockets
 pydantic
 langchain
-uvicorn
+uvicorn[standard]
 jinja2
 faiss-cpu
 bs4
 unstructured
 libmagic
+python-dotenv
+tiktoken
+playwright
+lxml
+chromadb
+tqdm

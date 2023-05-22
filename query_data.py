@@ -1,7 +1,6 @@
 """Create a ChatVectorDBChain for question/answering."""
 from langchain.callbacks.manager import AsyncCallbackManager
 from langchain.callbacks.tracers import LangChainTracer
-#from langchain.chains import ChatVectorDBChain
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chains.chat_vector_db.prompts import (CONDENSE_QUESTION_PROMPT,
                                                      QA_PROMPT)

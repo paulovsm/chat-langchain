@@ -1,8 +1,6 @@
 """Main entrypoint for the app."""
 import os
 import logging
-import pickle
-from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
@@ -23,6 +21,7 @@ vectorstore: Optional[VectorStore] = None
 
 # Load environment variables
 persist_directory = os.environ.get('PERSIST_DIRECTORY')
+vercel_port = os.environ.get('PORT')
 
 
 @app.on_event("startup")
@@ -84,4 +83,4 @@ async def websocket_endpoint(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=9000)
+    uvicorn.run(app, host="0.0.0.0", port=vercel_port)
